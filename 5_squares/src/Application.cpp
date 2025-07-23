@@ -172,41 +172,6 @@ public:
     void Unbind() const { glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0); }
 };
 
-class Quad{
-private:
-    Vertex vertecies[4];
-public:
-    Quad(glm::vec3 pos, float rot, float scale, glm::vec3 pivot)
-    {
-        //vertecies[0].Position = { -scale / 2, -scale / 2, 0 };
-        //vertecies[1].Position = {  scale / 2, -scale / 2, 0 };
-        //vertecies[2].Position = {  scale / 2,  scale / 2, 0 };
-        //vertecies[3].Position = { -scale / 2,  scale / 2, 0 };
-
-        glm::mat4 model = glm::mat4(1.0f);
-        model = glm::translate(model, pos);
-
-        model = glm::translate(model, pivot);
-        model = glm::rotate(model, glm::radians(rot), glm::vec3(0, 0, 1));
-        model = glm::translate(model, -pivot);
-    }
-
-    void SetColor(Vec4 color)
-    {
-        vertecies[0].Color = color;
-        vertecies[1].Color = color;
-        vertecies[2].Color = color;
-        vertecies[3].Color = color;
-    }
-    void SetTexture(float texID)
-    {
-        vertecies[0].TexID = texID;
-        vertecies[1].TexID = texID;
-        vertecies[2].TexID = texID;
-        vertecies[3].TexID = texID;
-    }
-};
-
 const unsigned int WIDTH = 1280;
 const unsigned int HEIGHT = 720;
 const char* textureSource1 = "src/textures/tex1.jpg";
