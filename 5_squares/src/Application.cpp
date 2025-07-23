@@ -320,7 +320,7 @@ int main()
 
         shader.Bind();
         VAO.Bind();
-        glDrawElements(GL_TRIANGLES, 30, GL_UNSIGNED_INT, nullptr);
+        glDrawElements(GL_TRIANGLES, sizeof(indicies) / sizeof(unsigned int), GL_UNSIGNED_INT, nullptr);
 
         glfwSwapBuffers(window);
         glfwPollEvents();
