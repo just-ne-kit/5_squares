@@ -177,10 +177,10 @@ const unsigned int HEIGHT = 720;
 const char* textureSource1 = "src/textures/tex1.jpg";
 const char* textureSource2 = "src/textures/tex2.jpg";
 
-const float size = 50.0f;
+const float size = 100.0f;
 
-const float FPS = 60.0f;
-const float fixedDeltaTime = 1. / FPS;
+const float FPS = 165.0f;
+const float fixedDeltaTime = 1 / FPS;
 
 static std::array<Vertex, 4> CreateSquare(float x, float y, float size, Vec4 color, float TexID, float angle);
 static GLuint LoadTexture(const std::string& path);
@@ -251,9 +251,9 @@ int main()
     {
         ImGui_ImplGlfwGL3_NewFrame();
 
-        ImGui::Begin("Button");
-        ImGui::DragFloat("valocity", &velocity, 1.0f, 0.0f, 1000.0f);
-        ImGui::DragFloat("angle", &angle, 1.0f, 0.0f, 3600.0f);
+        ImGui::Begin("ImGui");
+        ImGui::SliderFloat("velocity (pixel per second)", &velocity, 0.0f, 5000.0f);
+        ImGui::SliderFloat("angle (degrees per second)", &angle, 0.0f, 3600.0f);
         ImGui::ColorEdit3("clear color", (float*)&color);
         ImGui::End();
         ImGui::Render();
@@ -276,8 +276,8 @@ int main()
         auto q0 = CreateSquare(WIDTH / 2., HEIGHT / 2., size, { color.x, color.y, color.z, color.w }, 0.0f, 0.0f);
         auto q1 = CreateSquare(WIDTH / 3., HEIGHT / 2., size, { 0.06f, 0.71f, 0.29f, 1.0f }, 1.0f, 0.0f);
         auto q2 = CreateSquare(WIDTH * 2 / 3., HEIGHT / 2., size, { 0.33f, 0.63f, 0.94f, 1.0f }, 2.0f, 0.0f);
-        auto q3 = CreateSquare(WIDTH / 2., HEIGHT / 3., size, { 0.99f, 0.85f, 0.09f, 1.0f }, 0.0f, resultAngle);
-        auto q4 = CreateSquare(resultPos, HEIGHT * 2 / 3., size, { 0.48f, 0.24f, 0.91f, 1.0f }, 0.0f, 0.0f);
+        auto q3 = CreateSquare(WIDTH / 2., HEIGHT / 4., size, { 0.99f, 0.85f, 0.09f, 1.0f }, 0.0f, resultAngle);
+        auto q4 = CreateSquare(resultPos, HEIGHT * 3 / 4., size, { 0.48f, 0.24f, 0.91f, 1.0f }, 0.0f, 0.0f);
 
         memcpy(vertecies, q0.data(), q0.size() * sizeof(Vertex));
         memcpy(vertecies + 4, q1.data(), q1.size() * sizeof(Vertex));
